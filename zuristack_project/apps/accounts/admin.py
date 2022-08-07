@@ -10,9 +10,12 @@ from . import forms
 class CustomUserAdmin(UserAdmin):
     add_form = forms.CustomUserCreationForm
     form = forms.CustomUserChangeForm
+    model = models.CustomUser
+
     ordering = ["email"]
     list_display = ["email", "is_staff", "is_active", "is_superuser"]
     search_fields = ["email"]
+
     fieldsets = (
         (None, {
             "fields": (
@@ -30,3 +33,11 @@ class CustomUserAdmin(UserAdmin):
             ),
         }),
     )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'first_name', 'last_name', 'password1', 'password2'),
+        }),
+    )
+
+
